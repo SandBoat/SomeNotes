@@ -1,0 +1,301 @@
+/******************************* reset ***************************************/
+
+
+/* 清除内外边距 */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+
+/* structural elements 结构元素 */
+
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+
+/* list elements 列表元素 */
+
+pre,
+
+/* text formatting elements 文本格式元素 */
+
+fieldset,
+lengend,
+button,
+input,
+textarea,
+
+/* form elements 表单元素 */
+
+th,
+td {
+    /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 重置列表元素 */
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* 重置文本格式元素 */
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+abbr[title],
+acronym[title] {
+    /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before,
+q:after {
+    content: '';
+}
+
+
+/* 重置表单元素 */
+
+legend {
+    color: #000;
+}
+
+
+/* for ie6 */
+
+fieldset,
+img {
+    border: none;
+}
+
+
+/* img 搭车：让链接里的 img 无边框 */
+
+
+/* 注：optgroup 无法扶正 */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    /* 使得表单元素在 ie 下能继承字体大小 */
+}
+
+
+/* 重置表格元素 */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* 重置 hr */
+
+hr {
+    border: none;
+    height: 1px;
+}
+
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+
+html {
+    overflow-y: scroll;
+}
+
+
+/************************************ common  *****************************************/
+
+body {
+    background-color: #f3f3f3;
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #4499EE;
+    border-bottom: 1px solid #4499EE;
+}
+
+h3 {
+    color: #4499EE;
+    margin-top: 20px;
+}
+
+p {
+    margin: 2px 0;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+p:first-letter {
+    font-size: 24px;
+}
+
+pre {
+    margin-bottom: 16px;
+    padding: 14px 0 0 14px;
+    font-family: Consolas, "Courier New", Courier, monospace;
+    background-color: #FDFDFD;
+    box-shadow: 2px 2px 6px #6D6D6D inset;
+}
+
+pre+p.aPre {
+    margin-top: -16px;
+}
+
+
+/* 容器 */
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* 说明块 */
+
+.con {
+    margin: 30px 0;
+    padding: 30px 0;
+    background-color: #FDFDFD;
+    box-shadow: 1px 1px 3px #BEC0C2 inset;
+}
+
+.note:after,
+.con:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+
+/* 文字块 */
+
+.note {
+    margin: 10px 100px;
+    padding: 10px 20px;
+    background-color: #bec0c2;
+    text-align: left;
+    box-shadow: 2px 2px 6px #8C8C8C;
+}
+
+.note h2+p {
+    margin-top: 20px;
+}
+
+.note p span.que {
+    color: #ff3939;
+    font-weight: bold;
+}
+
+
+/*.note ul li:before{
+    content: ".";
+}*/
+
+.note ul li {
+    text-align: left;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+
+/* 代码块 */
+
+.code {
+    margin: 10px 100px;
+    padding: 10px 20px;
+    background-color: #1d1f21;
+    border: 1px solid #e1e1e8;
+    /*border-radius: 8px;*/
+    color: #c5c8c6;
+    text-align: left;
+    font-size: 20px;
+}
+
+@media (max-width: 500px) {
+    .con {
+        width: 100%;
+    }
+    .note {
+        margin: 10px 0;
+    }
+    .code {
+        margin: 10px 0;
+    }
+}
+
+.fn-left {
+    float: left;
+}
+
+.fn-right {
+    float: right;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}

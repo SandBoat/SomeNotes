@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>css3 弹性盒模型</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote.css">
+    <style type="text/css">
+    .box,
+    .box2 {
+        margin-bottom: 10px;
+        width: 100%;
+        height: 200px;
+        background-color: #fff;
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+    }
+    
+    .box .box_flex_1 {
+        background-color: #fdfdfd;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -ms-box-flex: 1;
+        box-flex: 1;
+    }
+    
+    .box .box_flex_2 {
+        background-color: #6770cc;
+        -webkit-box-flex: 2;
+        -moz-box-flex: 2;
+        -ms-box-flex: 2;
+        box-flex: 2;
+    }
+    
+    .box2 .box_flex_1 {
+        width: 1%;
+        background-color: #fdfdfd;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -ms-box-flex: 1;
+        box-flex: 1;
+    }
+    
+    .box2 .box_flex_2 {
+        width: 2%;
+        background-color: #6770cc;
+        -webkit-box-flex: 2;
+        -moz-box-flex: 2;
+        -ms-box-flex: 2;
+        box-flex: 2;
+    }
+    
+    .box2 .box_300 {
+        background-color: #000;
+        color: #c7c7c7;
+        width: 300px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <div class="note">
+                <h2>box-flex 固定比例</h2>
+                <div class="box">
+                    <div class="box_flex_1"></div>
+                    <div class="box_flex_2"></div>
+                    <div class="box_flex_1"></div>
+                </div>
+                <p>box-flex的内部内容 会导致分配不均</p>
+                <p>猜测原因为：box-flex按空余空间分配 而内容会占据一定空间</p>
+                <div class="box">
+                    <div class="box_flex_1">box-flex: 1</div>
+                    <div class="box_flex_2">box-flex: 2</div>
+                    <div class="box_flex_1">box-flex: 1</div>
+                </div>
+                <p>添加对应比例的width 可以消除这一影响</p>
+                <div class="box2">
+                    <div class="box_flex_1">box-flex: 1</div>
+                    <div class="box_flex_2">box-flex: 2</div>
+                    <div class="box_flex_1">box-flex: 1</div>
+                </div>
+            </div>
+            <div class="note">
+                <h2>box-flex 不固定比例</h2>
+                <div class="box2">
+                    <div class="box_flex_1">box-flex: 1</div>
+                    <div class="box_flex_2">box-flex: 2</div>
+                    <div class="box_300">width: 300px;</div>
+                </div>
+            </div>
+            <div class="note">
+                <h2>资料主要来源网址</h2>
+                <ul>
+                    <li>
+                        <a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/">CSS box-flex属性，然后弹性盒子模型简介</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
