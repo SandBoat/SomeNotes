@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>锤子banner</title>
+    <link rel="stylesheet" type="text/css" href="css/studynote.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style type="text/css">
+    * {
+        transition: all 1s linear;
+        top: 0;
+        left: 0;
+    }
+    
+    .tbWrap {
+    	transition: all 0.5s linear;
+        perspective: 1000;
+        -webkit-perspective: 1000;
+    }
+    
+    #banner1 {
+        background-image: url(nav.jpg);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <div class="note">
+                <h2>锤子banner</h2>
+                <div class="tbWrap">
+                    <div class="tb tb_3 center" id="banner1">
+                    </div>
+                    <script type="text/javascript">
+                    var banner1 = document.getElementById("banner1");
+                    banner1.onmousemove = function(e) {
+                        var height = banner1.offsetHeight;
+                        var width = banner1.offsetWidth;
+                        // 鼠标指针相对于事件源的的位置
+                        var x = height / 2 - e.offsetX;
+                        var y = width / 2 - e.offsetY;
+                        var deg = 30*(Math.abs(x)+Math.abs(y))/(height / 2+width / 2);
+                        console.log(deg);
+                        banner1.style.transform = "rotate3D(" + y + "," + -x + "," + "0" + "," + deg+"deg" + ")";
+                    };
+                    banner1.onmouseout = function() {
+                            banner1.style.transform = "rotate3D(0,0,0,0deg)";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
