@@ -297,3 +297,33 @@ pre+p.aPre {
 .mr-10 {
     margin-right: 10px;
 }
+
+
+/************************* 扩展 *******************************/
+
+.md-note {
+    margin-top: 50px;
+    padding: 0;
+}
+
+.md-note-head {
+    margin: 0 -1px;
+    padding: 0 20px;
+    box-shadow: 0 2px 2px #8C8C8C;
+    background-color: #4385f5;
+}
+
+.md-note-head title {
+    display: block;
+    padding: 10px 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.md-note:hover {
+    box-shadow: 4px 4px 8px #8C8C8C
+}
+
+.md-note-body {
+    padding: 20px;
+}

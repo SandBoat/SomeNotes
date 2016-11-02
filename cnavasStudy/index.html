@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote_v2.css">
+</head>
+
+<body>
+    <!-- <div class="con">
+        <div class="note md-note">
+            <div class="md-note-head">
+                <title></title>
+            </div>
+            <div class="md-note-body">
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="con">
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>实例</title>
+                </div>
+                <div class="md-note-body">
+                    <p>canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：</p>
+                    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000;">
+                        您的浏览器不支持 HTML5 canvas 标签。
+                    </canvas>
+                    <script>
+                    // 找到 <canvas> 元素:
+                    var c = document.getElementById("myCanvas");
+                    // 创建 context 对象：
+                    var ctx = c.getContext("2d");
+                    // 绘制一个红色的矩形
+                    ctx.fillStyle = "#FF0000"; // 设置fillStyle属性可以是CSS颜色，渐变，或图案。fillStyle 默认设置是#000000（黑色）。
+                    ctx.fillRect(0, 0, 150, 75); // fillRect(x,y,width,height) 方法定义了矩形当前的填充方式。
+                    </script>
+                    <p>canvas 是一个二维网格。</p>
+                    <p>canvas 的左上角坐标为 (0,0)</p>
+                    <p>上面的 fillRect 方法拥有参数 (0,0,150,75)。</p>
+                    <p>意思是：在画布上绘制 150x75 的矩形，从左上角开始 (0,0)。</p>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>Canvas - 路径</title>
+                </div>
+                <div class="md-note-body">
+                    <p>在Canvas上画线，我们将使用以下两种方法： </p>
+                    <ul>
+                        <li>moveTo(x,y) 定义线条开始坐标</li>
+                        <li>lineTo(x,y) 定义线条结束坐标</li>
+                    </ul>
+                    <p class="mt-10">实例</p>
+                    <p>定义开始坐标(0,0), 和结束坐标 (200,100). 然后使用 stroke() 方法来绘制线条:</p>
+                    <canvas id="myCanvas2" width="200" height="100" style="border:1px solid #d3d3d3;background:#ffffff;">
+                        你的浏览器不支持 HTML5 的 &lt;canvas&gt; 元素.
+                    </canvas>
+                    <script>
+                    var c = document.getElementById("myCanvas2");
+                    var ctx = c.getContext("2d");
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(200, 100);
+                    ctx.stroke();
+                    </script>
+                    <p>javascript:</p>
+                    <div class="code">
+                        <p>var c=document.getElementById("myCanvas"); </p>
+                        <p>var ctx=c.getContext("2d"); </p>
+                        <p>ctx.moveTo(0,0); </p>
+                        <p>ctx.lineTo(200,100); </p>
+                        <p> ctx.stroke();</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
