@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/SandBoat/SomeNotes/master/css/studynote_v2.css">
 </head>
+
 <body>
-	
+    <div class="container">
+        <div class="con">
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>加载动画1</title>
+                </div>
+                <div class="md-note-body" id = "test1">
+                    <style>
+                    * {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                    #wrapper {
+                        background: #fff;
+                        opacity: 1;
+                        /*position: fixed;*/
+                        /*z-index: 10;*/
+                        /*top: 0px;*/
+                        width: 100%;
+                        /*height: 100px;*/
+                    }
+                    
+                    #loader {
+                        background: url('http://img.zcool.cn/community/01909155a905dc32f875495ea197c9.gif') 50% 50% no-repeat #fff;
+                        background-size: cover;
+                        width: 100px;
+                        height: 100px;
+                        margin: 10px auto;
+                    }
+                    </style>
+                    <script>
+                    window.addEventListener("load", function() {
+                        var wrapper = document.getElementById("wrapper");
+                        document.getElementById("test1").removeChild(wrapper);
+                        document.getElementById("test1_loadReady").style.display = "block";
+                    });
+                    </script>
+                    <div id="wrapper">
+                        <div id="loader"></div>
+                    </div>
+                    <span id="test1_loadReady" style="display:none;">动画加载完毕</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

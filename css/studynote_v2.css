@@ -256,10 +256,10 @@ pre+p.aPre {
     padding: 10px 20px;
     background-color: #1d1f21;
     border: 1px solid #e1e1e8;
-    /*border-radius: 8px;*/
     color: #c5c8c6;
     text-align: left;
     font-size: 20px;
+    overflow: scroll;
 }
 
 @media (max-width: 500px) {

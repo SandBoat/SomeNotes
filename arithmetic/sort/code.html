@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>排序js实现</title>
+</head>
+
+<body>
+    <div id="inputArea"></div>
+    <div id="outputArea"></div>
+    <div id="timeArea"></div>
+    <script type="text/javascript">
+    // 生成随机输入数组
+    var inputArr = [];
+    for (var i = 0; i < 1000; i++) {
+        inputArr.push(Math.ceil(Math.random() * 10000));
+    }
+    // 待排序数组
+    var outputArea = document.getElementById("inputArea");
+    var outputArea = document.getElementById("outputArea");
+    var timeArea = document.getElementById("timeArea");
+    // var inputArr = [606, 238, 234, 25, 828, 549, 557, 97, 343, 16, 744, 649, 414, 990, 172, 599, 729, 65, 733, 519, 297, 796, 563, 81, 408, 895, 754, 905, 659, 232, 804, 976, 396, 523, 796, 718, 740, 186, 510, 413, 676, 974, 599, 730, 105, 238, 575, 256, 127, 867, 412, 642, 913, 688, 307, 889, 654, 619, 519, 947, 51, 282, 942, 131, 963, 217, 208, 114, 233, 613, 299, 520, 319, 679, 541, 760, 52, 307, 355, 11, 404, 280, 675, 327, 257, 676, 314, 337, 838, 774, 1000, 321, 970, 504, 146, 134, 342, 928, 35, 70];
+    var inputArrLen = inputArr.length;
+    inputArea.innerHTML = "输入：" + inputArr;
+
+    // 输出
+    function myOutput(ele, resTxt) {
+        ele.innerHTML = "输出：" + resTxt;
+    }
+    // 测试
+    function test(func, arr) {
+        var start = new Date().getTime(); //起始时间
+        var tempArr = [];
+        var tempArrLen;
+        for (var i = 0; i < 1000; i++) {
+            tempArr = arr;
+            tempArrLen = tempArr.length;
+            func(tempArr, tempArrLen); //执行待测函数
+        }
+        myOutput(outputArea, tempArr);
+        var end = new Date().getTime(); //结束时间
+        timeArea.innerHTML = "运行时间：" + (end - start) + "ms";
+    }
+    // 交换
+    function mySwap(arr, i, j) {
+        var temp;
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+    // 冒泡排序 
+    // 效率：O(N^2)
+    var mp = function(arr, arrLength) {
+            var temp;
+            for (var i = arrLength - 1; i > 0; i--) {
+                for (var j = 0; j < i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        mySwap(arr, i, j);
+                    }
+                }
+            }
+        }
+        // test(mp, inputArr);
+
+    // 选择排序
+    // 效率：比较的次数和冒泡是一样的，但是交换的次数小。
+    // 因为交换数据需要在内存中移动，时间上要多(java语言中，影响不大，只是改变引用位置而已
+    var xz = function(arr, arrLength) {
+            var min;
+            for (var i = 0; i < arrLength - 1; i++) {
+                min = i;
+                for (var j = i + 1; j < arrLength; j++) {
+                    if (arr[j] < arr[min]) {
+                        min = j;
+                    }
+                }
+                mySwap(arr, i, min);
+            }
+        }
+        // test(xz, inputArr);
+
+    // 插入排序
+    // 效率：在大多数情况下，插入算法仍然需要0(N^2)的时间，但比冒泡快一倍，比选择排序也还要快一点。
+    // 经常被用在较复杂的排序算法的最后阶段，例如快速排序。
+    var cr = function(arr, arrLength) {
+            var temp;
+            var j;
+            for (var i = 1; i < arrLength; i++) {
+                temp = arr[i];
+                j = i;
+                while (arr[j - 1] > temp && j > 0) {
+                    arr[j] = arr[j - 1];
+                    j--;
+                }
+                arr[j] = temp;
+            }
+        }
+        // test(cr, inputArr);
+
+    // 归并排序
+    // 效率：O(N logN)
+    var gb = function(arr, arrLength) {
+        // var workSpace = new Array(arrLength);
+        var workSpace = [];
+        recMergeSort(arr, workSpace, 0, arrLength - 1);
+    }
+
+    function recMergeSort(source, workSpace, lowerBound, upperBound) {
+        if (lowerBound == upperBound) {
+            return; // if range is 1,no use sorting 
+        } else {
+            var mid = Math.floor((lowerBound + upperBound) / 2); //find midpoint 
+            // console.log(lowerBound+":"+upperBound);
+            recMergeSort(source, workSpace, lowerBound, mid); // sort low half 
+            recMergeSort(source, workSpace, mid + 1, upperBound); // sort high half 
+            merge(source, workSpace, lowerBound, mid + 1, upperBound); //merge them 
+        }
+    }
+
+    function merge(source, workSpace, lowPtr, highPtr, upperBound) {
+        var j = 0; // workspace index 
+        var lowerBound = lowPtr;
+        var mid = highPtr - 1;
+        var n = upperBound - lowerBound + 1; // size of items 
+        while (lowPtr <= mid && highPtr <= upperBound) {
+            if (source[lowPtr] < source[highPtr]) {
+                workSpace[j++] = source[lowPtr++];
+            } else {
+                workSpace[j++] = source[highPtr++]
+            }
+        }
+        while (lowPtr <= mid) {
+            workSpace[j++] = source[lowPtr++];
+        }
+        while (highPtr <= upperBound) {
+            workSpace[j++] = source[highPtr++];
+        }
+        for (j = 0; j < n; j++) {
+            source[lowerBound + j] = workSpace[j];
+        }
+    }
+    // test(gb, inputArr);
+
+    // 希尔排序
+    // 希尔排序基于插入排序，但增加了一个新的特性，大大地提高了插入排序的执行效率。
+    // 希尔排序通过加入插入排序中元素之间的间隔，并在这些有间隔的元素中进行插入排序，从而使数据项能大跨度地移动
+    var xe = function(arr, arrLength) {
+        var theArray = [];
+        var nElems = 0;
+        arraySh(theArray,arrLength*3+1);
+        for(var i=0;i<arrLength;i++){
+        	nElems = insert(theArray, nElems, arr[i]);
+        }
+        shellSort(theArray, nElems);
+    }
+
+    // 数组初始化
+    function arraySh(theArray,max) {
+        for (var i = 0; i < max; i++) {
+            theArray[i] = 0;
+        }
+    }
+
+    // 插入数据
+    // 返回nElems
+    function insert(theArray, nElems,value) {
+        theArray[nElems] = value;
+        nElems++;
+        return nElems;
+    }
+
+    function shellSort(theArray, nElems) {
+        var inner, outer;
+        var temp;
+        var h = 1;
+        while (h <= nElems / 3) {
+            h = h * 3 + 1;
+        }
+        while (h > 0) {
+            for (outer = h; outer < nElems; outer++) {
+                temp = theArray[outer];
+                inner = outer;
+                while (inner > h - 1 && theArray[inner - h] >= temp) {
+                    theArray[inner] = theArray[inner - h];
+                    inner -= h;
+                }
+                theArray[inner] = temp;
+            }
+            h = (h - 1) / 3;
+        }
+    }
+    // test(xe);
+
+    </script>
+</body>
+
+</html>
