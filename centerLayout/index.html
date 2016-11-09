@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>各种居中</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote_v2.css">
+    <style type="text/css">
+    .center-out {
+    	box-sizing: border-box;
+        width: 800px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    
+    .center_block {
+        width: 500px;
+        height: 150px;
+        color: #fff;
+        background-color: #000;
+    }
+    
+    .center_out .center_block {
+        width: 100px;
+        height: 100px;
+    }
+    /********** 居中块1 *********/
+    
+    .center1 {
+        margin: 10px auto;
+    }
+    
+    .center1#center1_1 {
+        position: absolute;
+    }
+    
+    .center1#center1_2 {
+        float: left;
+    }
+    /********** 居中块2 *********/
+    
+    .center2-out {
+        width: 800px;
+        height: 300px;
+        border: 1px solid #000;
+        text-align: center;
+    }
+    
+    .center2-in {
+        display: inline-block;
+    }
+    
+    .center2-out pre {
+        text-align: left;
+    }
+    /********** 居中块3 *********/
+    
+    .center3 {
+        width: 800px;
+    }
+    
+    .center3 p {
+        line-height: 150px;
+    }
+    /********** 居中块4 *********/
+    
+    .center4-table {
+        width: 800px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    
+    .center4-td {
+        text-align: center;
+        vertical-align: middle
+    }
+    
+    .center4-td .center4-td-in {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+    }
+    /********** 居中块5 *********/
+    
+    .center5-table-cell {
+        display: table-cell;
+        width: 800px;
+        height: 300px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #000;
+    }
+    
+    .center5-table-cell-in {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+    }
+    /********** 居中块6 *********/
+    
+    .center6-out {
+        position: relative;
+    }
+    
+    .center6-in {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+    }
+    /********** 居中块7 *********/
+    
+    .center7-out {
+        position: relative;
+    }
+    
+    .center7-in {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <!-- 
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title></title>
+                </div>
+                <div class="md-note-body">
+                </div>
+            </div> 
+            -->
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中1 —> margin: 0 atuo</title>
+                </div>
+                <div class="md-note-body">
+                    <pre class="center_block center1">
+/********** 居中块1 *********/
+.center1 {
+    margin: 10px auto;
+}
+                    </pre>
+                    <p>具体来说就是把要居中的元素的margin-left和margin-right都设为auto，此方法只能进行水平的居中，且对浮动元素或绝对定位元素无效。</p>
+                    <pre class="center_block center1" id="center1_2">
+center1#center1_1 {
+    position: absolute;
+}
+                    </pre>
+                    <pre class="center_block center1" id="center1_2">
+.center1#center1_2 {
+    float: left;
+}
+                    </pre>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中2 —> text-align:center</title>
+                </div>
+                <div class="md-note-body">
+                    <div class="center2-out">
+                        <pre>
+/********** 居中块2 *********/
+.center2-out {
+    width: 800px;
+    height: 200px;
+    border: 1px solid #000;
+    text-align: center;
+}
+                    </pre>
+                        <pre class="center_block center2-in">
+.center2-in {
+    display: inline-block;
+}
+                        </pre>
+                    </div>
+                    <p>只能对图片，按钮，文字等行内元素(display为inline或inline-block等)进行水平居中。但要说明的是在IE6、7这两个奇葩的浏览器中，它是能对任何元素进行水平居中的。</p>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中3 —> line-height</title>
+                </div>
+                <div class="md-note-body">
+                    <pre>
+/********** 居中块3 *********/
+.center3 {
+    width: 800px;
+}
+.center3 p{
+	line-height:150px;
+}
+                    </pre>
+                    <div class="center_block center3">
+                        <p>把文字的line-height设为文字父容器的高度，适用于只有一行文字的情况。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中4 —> 使用表格</title>
+                </div>
+                <div class="md-note-body">
+                    <pre>
+/********** 居中块4 *********/
+
+.center4-table {
+    width: 800px;
+    height: 300px;
+    border: 1px solid #000;
+}
+
+.center4-td {
+    text-align: center;
+    vertical-align: middle
+}
+
+.center4-td .center4-td-in {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+                </pre>
+                    <table class="center4-table">
+                        <tr>
+                            <td width="100" height="100" class="center4-td">
+                                <div class="center_block center4-td-in"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中5 —> display:table-cell</title>
+                </div>
+                <div class="md-note-body">
+                    <pre>
+/********** 居中块5 *********/
+
+.center5-table-cell {
+    display: table-cell;
+    width: 800px;
+    height: 300px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #000;
+}
+
+.center5-table-cell-in {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+                </pre>
+                    <div class="center5-table-cell">
+                        <div class="center_block center5-table-cell-in"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中6 —> 使用绝对定位来进行居中</title>
+                </div>
+                <div class="md-note-body">
+                    <pre>
+/********** 居中块6 *********/
+
+.center6-out {
+    position: relative;
+}
+
+.center6-in {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+                </pre>
+                    <div class="center-out center6-out">
+                        <div class="center_block center6-in"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>居中7 —> 另一种使用绝对定位来居中的方法</title>
+                </div>
+                <div class="md-note-body">
+                    <pre>
+/********** 居中块7 *********/
+
+.center7-out {
+    position: relative;
+}
+
+.center7-in {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}    
+                    </pre>
+                    <div class="center-out center7-out">
+                        <div class="center_block center7-in"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
