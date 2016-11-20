@@ -8,21 +8,24 @@
 
 <body>
     <div id="inputArea"></div>
+    <div id="inputAreaLen"></div>
     <div id="outputArea"></div>
     <div id="timeArea"></div>
     <script type="text/javascript">
     // 生成随机输入数组
     var inputArr = [];
-    for (var i = 0; i < 40000; i++) {
+    for (var i = 0; i < 1000; i++) {
         inputArr.push(Math.ceil(Math.random() * 100000));
     }
     // 待排序数组
-    var outputArea = document.getElementById("inputArea");
+    // var outputArea = document.getElementById("inputArea");
     var outputArea = document.getElementById("outputArea");
     var timeArea = document.getElementById("timeArea");
     // var inputArr = [606, 238, 234, 25, 828, 549, 557, 97, 343, 16, 744, 649, 414, 990, 172, 599, 729, 65, 733, 519, 297, 796, 563, 81, 408, 895, 754, 905, 659, 232, 804, 976, 396, 523, 796, 718, 740, 186, 510, 413, 676, 974, 599, 730, 105, 238, 575, 256, 127, 867, 412, 642, 913, 688, 307, 889, 654, 619, 519, 947, 51, 282, 942, 131, 963, 217, 208, 114, 233, 613, 299, 520, 319, 679, 541, 760, 52, 307, 355, 11, 404, 280, 675, 327, 257, 676, 314, 337, 838, 774, 1000, 321, 970, 504, 146, 134, 342, 928, 35, 70];
     var inputArrLen = inputArr.length;
     inputArea.innerHTML = "输入：" + inputArr;
+    inputAreaLen.innerHTML = "输入长度：" + inputArrLen;
+
 
     // 输出
     function myOutput(ele, resTxt) {
@@ -143,6 +146,38 @@
         }
     }
     // test(gb, inputArr);
+
+    var gb2 = function(arr) { //采用自上而下的递归方法
+        var len = arr.length;
+        if (len < 2) {
+            return arr;
+        }
+        var middle = Math.floor(len / 2),
+            left = arr.slice(0, middle),
+            right = arr.slice(middle);
+        return merge2(gb2(left), gb2(right));
+    }
+
+    function merge2(left, right) {
+        var result = [];
+
+        while (left.length && right.length) {
+            if (left[0] <= right[0]) {
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
+            }
+        }
+
+        while (left.length)
+            result.push(left.shift());
+
+        while (right.length)
+            result.push(right.shift());
+
+        return result;
+    }
+    // test(gb2, inputArr);
 
     // 希尔排序
     // 希尔排序基于插入排序，但增加了一个新的特性，大大地提高了插入排序的执行效率。
