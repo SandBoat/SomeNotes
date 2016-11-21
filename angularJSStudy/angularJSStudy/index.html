@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>angularJS</title>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/SandBoat/SomeNotes/master/css/studynote_v2.css">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+
+    <body ng-app="myApp">
+        <div class="container">
+            <div class="con">
+                <script type="text/javascript">
+                var app = angular.module("myApp", []);
+                </script>>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>AngularJS 指令</title>
+                    </div>
+                    <!-- <div class="md-note-body">
+                        <div ng-app="" ng-init="firstName='John'">
+                            <p>在输入框中尝试输入：</p>
+                            <p>姓名：
+                                <input type="text" ng-model="firstName">
+                            </p>
+                            <p>你输入的为： {{firstName}}</p>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>数据绑定</title>
+                    </div>
+                    <!-- <div class="md-note-body">
+                        <div ng-app="" ng-init="quantity=1;price=5">
+                            <h2>价格计算器</h2> 数量：
+                            <input type="number" ng-model="quantity"> 价格：
+                            <input type="number" ng-model="price">
+                            <p><b>总价：</b> {{ quantity * price }}</p>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>重复 HTML 元素</title>
+                    </div>
+                    <!-- <div class="md-note-body">
+                        <div ng-app="" ng-init="names=['Jani','Hege','Kai']">
+                            <p>使用 ng-repeat 来循环数组</p>
+                            <ul>
+                                <li ng-repeat="x in names">
+                                    {{ x }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-app="" ng-init="names=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+                            <p>循环对象：</p>
+                            <ul>
+                                <li ng-repeat="x    in names">
+                                    {{ x.name + ', ' + x.country }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>读取 JSON 文件</title>
+                    </div>
+                    <div class="md-note-body">
+                        <!-- <div ng-app="myApp1" ng-controller="siteCtrl">
+                            <ul>
+                                <li ng-repeat="x in names">
+                                    {{ x.Name + ', ' + x.Country }}
+                                </li>
+                            </ul>
+                        </div>
+                        <script>
+                        var app = angular.module('myApp1', []);
+                        app.controller('siteCtrl', function($scope, $http) {
+                            $http.get("./assets/data/data.js")
+                                .success(function(response) {
+                                    $scope.names = response.sites;
+                                });
+                        });
+                        </script> -->
+                    </div>
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>Select(选择框)</title>
+                    </div>
+                    <div class="md-note-body">
+                        <div ng-controller="myCtrl2">
+                            <p>选择网站:</p>
+                            <select ng-model="selectedSite" ng-options="x.site for x in sites">
+                            </select>
+                            <h1>你选择的是: {{selectedSite.site}}</h1>
+                            <p>网址为: {{selectedSite.url}}</p>
+                        </div>
+                        <script>
+                        app.controller('myCtrl2', function($scope) {
+                            $scope.sites = [{
+                                site: "Google",
+                                url: "http://www.google.com"
+                            }, {
+                                site: "Runoob",
+                                url: "http://www.runoob.com"
+                            }, {
+                                site: "Taobao",
+                                url: "http://www.taobao.com"
+                            }];
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>ng-disabled 指令</title>
+                    </div>
+                    <div class="md-note-body">
+                        <div ng-controller="myCtrl3">
+                            <p>
+                                <button ng-disabled="mySwitch">点我!</button>
+                            </p>
+                            <p>
+                                <input type="checkbox" ng-model="mySwitch">按钮
+                            </p>
+                            <p>
+                                {{ mySwitch }}
+                            </p>
+                        </div>
+                        <script>
+                        app.controller('myCtrl3', function($scope) {
+                            $scope.mySwitch = true;
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>ng-show ng-hide 指令</title>
+                    </div>
+                    <div class="md-note-body">
+                        <div ng-controller="myCtrl4">
+                            <!--ng-show  -->
+                            <p ng-show="true">我是可见的。</p>
+                            <p ng-show="false">我是不可见的。</p>
+                            <!-- 使用表达式来计算布尔值（ true 或 false）: 14 > 12(true) -->
+                            <p ng-show="hour > 12">我是可见的。</p>
+                            <!-- ng-hide -->
+                            <p ng-hide="true">我是不可见的。</p>
+                            <p ng-hide="false">我是可见的。</p>
+                        </div>
+                        <script>
+                        app.controller('myCtrl4', function($scope) {
+                            $scope.hour = 14;
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="note md-note">
+                    <div class="md-note-head">
+                        <title>ng-click 指令</title>
+                    </div>
+                    <div class="md-note-body">
+                        <div ng-controller="myCtrl5">
+                            <button ng-click="count = count + 1">点我！+1</button>
+                            <p>{{ count }}</p>
+                        </div>
+                        <script>
+                            app.controller('myCtrl5',function($scope){
+                                $scope.count = 0;
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
