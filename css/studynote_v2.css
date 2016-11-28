@@ -311,7 +311,7 @@ p {
     color: #c5c8c6;
     text-align: left;
     font-size: 20px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 @media (max-width: 500px) {
