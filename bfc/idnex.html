@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote.css">
+    <style type="text/css">
+    .note #note1 {
+        width: 100%;
+    }
+    
+    #note1 .n1_b {
+        display: inline-block;
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+    }
+    
+    #note1 .n1_b .n1_b_b1 {
+        display: inline-block;
+        margin: 10px;
+        width: 10px;
+        height: 10px;
+        background-color: #eee;
+    }
+    
+    #note1 .n1_b .n1_b_b2 {
+        margin: 10px;
+        width: 10px;
+        height: 10px;
+        background-color: #eee;
+    }
+    
+    .note #note2 {
+        width: 100%;
+    }
+    #note2 ul li{
+    	overflow: hidden;
+    	/*display: table;*/
+    }
+    #note2 ul li{
+    	margin:10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <div class="note">
+                <h2>BFC的生成</h2>
+                <p>CSS2.1中规定满足下列CSS声明之一的元素便会生成BFC。</p>
+                <ul>
+                    <li>根元素</li>
+                    <li>float的值不为none</li>
+                    <li>overflow的值不为visible</li>
+                    <li>display的值为inline-block、table-cell、table-caption</li>
+                    <li>position的值为absolute或fixed</li>
+                </ul>
+                </br>
+                <p>在BFC中相邻的块级元素外边距会折叠。</p>
+                <div id="note1">
+                    <div class="n1_b">
+                        <div class="n1_b_b2"></div>
+                        <div class="n1_b_b2"></div>
+                    </div>
+                    <div class="n1_b">
+                        <div class="n1_b_b1"></div>
+                        <div class="n1_b_b1"></div>
+                    </div>
+                </div>
+                <div id="note2">
+                <ul>
+                	<li>aaaaaaa</li>
+                	<li>bbbbb</li>
+                	<li>vvvvvvvvv</li>
+                	<li>dddddddd</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
