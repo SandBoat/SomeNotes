@@ -1,0 +1,10 @@
+.box {
+    transform: rotate(45deg);
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .25);
+    transition: all .2s ease .1s;
+}
+
+.a {
+    display: flex;
+}

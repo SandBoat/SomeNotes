@@ -9,6 +9,7 @@
     5.其他(animation, transition等)
 **************************************************************/
 
+
 /*************************** CSS命名规范（规则）*********************************
     头：header
     内容：content/container
@@ -307,7 +308,7 @@ p {
     margin: 10px 100px;
     padding: 10px 20px;
     background-color: #1d1f21;
-    border: 1px solid #e1e1e8;
+    /*border: 1px solid #e1e1e8;*/
     color: #c5c8c6;
     text-align: left;
     font-size: 20px;

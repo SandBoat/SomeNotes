@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote_v2.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <!-- 
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title></title>
+                </div>
+                <div class="md-note-body">
+                    <p></p>
+                    <pre class="code"></pre>
+                </div>
+            </div> 
+            -->
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>this</title>
+                </div>
+                <div class="md-note-body">
+                    <p>JavaScript 中的 this 含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式。</p>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>作为对象方法调用</title>
+                </div>
+                <div class="md-note-body">
+                    <p>在 JavaScript 中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this 被自然绑定到该对象。</p>
+                    <pre class="code">
+ var point = { 
+ x : 0, 
+ y : 0, 
+ moveTo : function(x, y) { 
+     this.x = this.x + x; 
+     this.y = this.y + y; 
+     } 
+ }; 
+
+ point.moveTo(1, 1)//this 绑定到当前对象，即 point 对象
+                    </pre>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>作为函数调用</title>
+                </div>
+                <div class="md-note-body">
+                    <p>函数也可以直接被调用，此时 this 绑定到全局对象。在浏览器中，window 就是该全局对象。</p>
+                    <pre class="code">
+ function makeNoSense(x) { 
+ this.x = x; 
+ } 
+
+ makeNoSense(5); 
+ x;// x 已经成为一个值为 5 的全局变量
+                    </pre>
+                    <pre class="code">
+var x = 1;
+function t() {
+    var x = 10;
+    console.log(this.x);
+} 
+t(); // 1
+                    </pre>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>作为构造函数调用</title>
+                </div>
+                <div class="md-note-body">
+                    <p></p>
+                    <pre class="code"></pre>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>使用 apply 或 call 调用</title>
+                </div>
+                <div class="md-note-body">
+                    <p></p>
+                    <pre class="code">
+ function Point(x, y){ 
+    this.x = x; 
+    this.y = y; 
+    this.moveTo = function(x, y){ 
+        this.x = x; 
+        this.y = y; 
+    } 
+ } 
+
+ var p1 = new Point(0, 0); 
+ var p2 = {x: 0, y: 0}; 
+ p1.moveTo(1, 1); 
+ p1.moveTo.apply(p2, [10, 10]);// p2 调用 p1的方法
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
