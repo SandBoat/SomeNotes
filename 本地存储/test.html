@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/studynote_v2.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="con">
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>JavaScript本地存储</title>
+                </div>
+                <div class="md-note-body">
+                    <ul>
+                        <li>Cookies：浏览器均支持，容量为4KB</li>
+                        <li>UserData：仅IE支持，容量为64KB</li>
+                        <li>Flash：100KB，非HTML原生，需要插件支持</li>
+                        <li>Google Gears SQLite ：需要插件支持，容量无限制</li>
+                        <li>LocalStorage：HTML5，容量为5M</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>Cookie</title>
+                </div>
+                <div class="md-note-body">
+                    <p>Chorm 不支持本地调试Cookie</p>
+                    <button id="Cookie_Test">Cookie Test</button>
+                </div>
+            </div>
+            <div class="note md-note">
+                <div class="md-note-head">
+                    <title>localStorage</title>
+                </div>
+                <div class="md-note-body">
+                    <p>localStorage.lastname:<span id="localStorageTest">Cookie Test</span></p>
+                </div>
+                <script type="text/javascript">
+                localStorage.lastname = "Smith";
+                document.getElementById("localStorageTest").innerHTML = localStorage.lastname;
+                </script>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="test.js"></script>
+</body>
+
+</html>
