@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>紧贴底部的页脚</title>
+  <style type="text/css">
+  /********************** common ***********************/
+  
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  
+  header {
+    line-height: 80px;
+  }
+  
+  header,
+  footer {
+    background-color: #ccc;
+    text-align: center;
+  }
+  
+  main {
+    text-align: center;
+    font-size: 30px;
+  }
+  </style>
+  <!-- 方法一 -->
+  <!--   <style type="text/css">
+  /* footer的每一级父元素都为100%高 */
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  /**
+  * 这里将页面内容最小高度设为100%；撑满屏幕，
+  * 然后使用margin-bottom负值把页脚吸上来，
+  * 最后设置底部内边距用来填充内容过多时被遮挡的页脚。 
+  */
+  
+  .wrapper {
+    height: auto !important;
+    min-height: 100%;
+    height: 100%;
+    margin-bottom: -80px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+  }
+  
+  footer {
+    height: 80px;
+  }
+  </style> -->
+  <!-- 方法二 -->
+  <!-- <style type="text/css">
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .wrapper {
+    height: auto !important;
+    min-height: 100%;
+    height: 100%;
+    margin-bottom: -80px;
+  }
+  /* 这里用伪元素取代了方法一中.wrapper的内边距 */
+  
+  .wrapper::after {
+    content: "";
+    display: block;
+    height: 80px;
+  }
+  
+  footer {
+    height: 80px;
+  }
+  </style> -->
+  <!-- 方法三 -->
+  <!-- 借助视口相关的长度单位以及calc()函数。这两个东西都只能兼容到IE9。 -->
+  <!-- <style type="text/css">
+  .wrapper {
+    min-height: calc(100vh - 80px);
+  }
+  
+  footer {
+    height: 80px;
+  }
+  </style> -->
+  <!-- 方法四 -->
+  <!-- 用CSS3中的布局神器Flexbox。 -->
+  <style type="text/css">
+  body {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+  }
+  
+  .wrapper {
+    flex: 1;
+  }
+  
+  footer {
+    height: 80px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <span>Header</span>
+    </header>
+    <main>
+      <p>我是内容</p>
+    </main>
+  </div>
+  <footer>
+    <span>Fotter</span>
+  </footer>
+</body>
+
+</html>

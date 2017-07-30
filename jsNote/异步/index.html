@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS的异步模式</title>
+</head>
+
+<body>
+    <h1>异步模式：</h1>
+    <ol>
+        <li>回调函数</li>
+        <li>事件监听</li>
+        <li>观察者模式</li>
+        <li>promise对象</li>
+    </ol>
+    <h2>回调函数</h2>
+    <script>
+    var f1 = function(callback) {
+        setTimeout(function() {
+            callback();
+        }, 1000);
+    }
+    var f2 = function(){
+    	alert("f2");
+    }
+
+    f1(f2);
+    </script>
+</body>
+
+</html>

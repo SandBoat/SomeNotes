@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件化学习</title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+
+<body>
+    <input type="text" id="input" />
+    <p><span id="input_len">0</span>个字</p>
+    <!-- 最简陋的写法 -->
+    <script type="text/javascript">
+    // $(function() {
+    //     $("#input").bind('input propertychange', function() {
+    //         var len = $("#input").val().length;
+    //         $("#input_len").text(len);
+    //     });
+    // });
+    </script>
+    <!-- 作用域隔离 -->
+    <script type="text/javascript">
+    // var textCount = {
+    //     input: null,
+    //     input_len: null,
+    //     init: function(config) {
+    //         this.input = $(config.inputID);
+    //         this.input_len = $(config.inputLenID);
+    //         this.bind();
+    //         return this;
+    //     },
+    //     getLen: function() {
+    //         if (this.input == null) return 0;
+    //         return this.input.val().length;
+    //     },
+
+    //     // 渲染
+    //     render: function() {
+    //         if (this.input_len != null) this.input_len.text(this.getLen());
+    //     },
+
+    //     bind: function() {
+    //         var self = this;
+    //         this.input.bind('input propertychange', function() {
+    //             self.render();
+    //         });
+
+    //     }
+    // };
+
+    // $(function() {
+    //     textCount.init({
+    //         inputID: "#input",
+    //         inputLenID: "#input_len"
+    //     })
+    // });
+    </script>
+    <!-- 函数闭包 -->
+    <script type="text/javascript">
+    // var textCount = (function() {
+    //     var _input = null;
+    //     var _input_len = null;
+    //     var _getLen = function() {
+    //         if (input == null) return 0;
+    //         return input.val().length;
+    //     };
+    //     // 渲染
+    //     var _render = function() {
+    //         if (input_len != null) input_len.text(_getLen());
+    //     };
+    //     var _bind = function() {
+    //         input.bind('input propertychange', function() {
+    //             _render();
+    //         });
+
+    //     };
+
+    //     var TextCount = function() {};
+    //     TextCount.prototype.init = function(config) {
+    //         _input = $(config.inputID);
+    //         _input_len = $(config.inputLenID);
+    //         _bind();
+    //         console.log(this)
+    //             // return this;
+    //     };
+    //     return new TextCount();
+    // })();
+
+
+    var textCount = (function() {
+        var TextCount = function() {
+            this._input = null;
+            this._input_len = null;
+            this._getLen = function() {
+                if (this._input == null) return 0;
+                return this._input.val().length;
+            };
+            // 渲染
+            this._render = function() {
+                if (this._input_len != null) this._input_len.text(this._getLen());
+            };
+            this._bind = function() {
+            	var self = this;
+                this._input.bind('input propertychange', function() {
+                    self._render();
+                });
+
+            };
+        };
+        TextCount.prototype.init = function(config) {
+            this._input = $(config.inputID);
+            this._input_len = $(config.inputLenID);
+            this._bind();
+        };
+        return new TextCount();
+    })();
+
+    $(function() {
+        textCount.init({
+            inputID: "#input",
+            inputLenID: "#input_len"
+        })
+    });
+    </script>
+</body>
+
+</html>
