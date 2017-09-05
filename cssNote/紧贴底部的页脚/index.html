@@ -2,34 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>紧贴底部的页脚</title>
-  <style type="text/css">
-  /********************** common ***********************/
-  
-  * {
-    padding: 0;
-    margin: 0;
-  }
-  
-  header {
-    line-height: 80px;
-  }
-  
-  header,
-  footer {
-    background-color: #ccc;
-    text-align: center;
-  }
-  
-  main {
-    text-align: center;
-    font-size: 30px;
-  }
-  </style>
-  <!-- 方法一 -->
-  <!--   <style type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紧贴底部的页脚</title>
+    <style type="text/css">
+    /********************** common ***********************/
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    header {
+        line-height: 80px;
+    }
+
+    header,
+    footer {
+        background-color: #ccc;
+        text-align: center;
+    }
+
+    main {
+        text-align: center;
+        font-size: 30px;
+    }
+    </style>
+    <!-- 方法一 -->
+    <!--   <style type="text/css">
   /* footer的每一级父元素都为100%高 */
   html,
   body {
@@ -55,8 +55,8 @@
     height: 80px;
   }
   </style> -->
-  <!-- 方法二 -->
-  <!-- <style type="text/css">
+    <!-- 方法二 -->
+    <!-- <style type="text/css">
   html,
   body {
     height: 100%;
@@ -81,48 +81,67 @@
     height: 80px;
   }
   </style> -->
-  <!-- 方法三 -->
-  <!-- 借助视口相关的长度单位以及calc()函数。这两个东西都只能兼容到IE9。 -->
-  <!-- <style type="text/css">
-  .wrapper {
-    min-height: calc(100vh - 80px);
-  }
-  
-  footer {
-    height: 80px;
-  }
-  </style> -->
-  <!-- 方法四 -->
-  <!-- 用CSS3中的布局神器Flexbox。 -->
-  <style type="text/css">
-  body {
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
-  }
-  
-  .wrapper {
-    flex: 1;
-  }
-  
-  footer {
-    height: 80px;
-  }
-  </style>
+    <!-- 方法三 -->
+    <!-- 借助视口相关的长度单位以及calc()函数。这两个东西都只能兼容到IE9。 -->
+    <!-- <style type="text/css">
+    .wrapper {
+        min-height: calc(100vh - 80px);
+    }
+
+    footer {
+        height: 80px;
+    }
+    </style> -->
+    <!-- 方法四 -->
+    <!-- 用flexbox布局 -->
+    <!-- <style type="text/css">
+    body {
+        display: flex;
+        flex-flow: column;
+        min-height: 100vh;
+    }
+
+    .wrapper {
+        flex: 1;
+    }
+
+    footer {
+        height: 80px;
+    }
+    </style> -->
+    <!-- 方法五 -->
+    <!-- 用Grid网格布局 -->
+    <style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    body {
+        min-height: 100%;
+        display: grid;
+        grid-template-rows: 1fr auto;
+    }
+
+    footer {
+        height: 80px;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    </style>
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <span>Header</span>
-    </header>
-    <main>
-      <p>我是内容</p>
-    </main>
-  </div>
-  <footer>
-    <span>Fotter</span>
-  </footer>
+    <div class="wrapper">
+        <header>
+            <span>Header</span>
+        </header>
+        <main>
+            <p>我是内容</p>
+        </main>
+    </div>
+    <footer>
+        <span>Fotter</span>
+    </footer>
 </body>
 
 </html>

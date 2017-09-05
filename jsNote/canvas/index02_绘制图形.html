@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>绘制图形</title>
+    <style type="text/css">
+    #canvas {
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1200" height="150"></canvas>
+    <script type="application/javascript">
+    var canvas = document.getElementById("canvas");
+    var d = 150;
+    if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        // 绘制矩形
+        ctx.fillRect(25, 25, 100, 100);
+        ctx.clearRect(45, 45, 60, 60);
+        ctx.strokeRect(50, 50, 50, 50);
+
+        // 绘制三角形
+        ctx.beginPath();
+        ctx.moveTo(225, 75);
+        ctx.lineTo(255, 45);
+        ctx.lineTo(255, 105);
+        ctx.fill();
+
+        // 绘制三角形
+        ctx.beginPath();
+        ctx.moveTo(375, 75);
+        ctx.lineTo(405, 45);
+        ctx.lineTo(405, 105);
+        ctx.lineTo(375, 75);
+        ctx.stroke();
+
+        // 绘制三角形
+        ctx.beginPath();
+        ctx.moveTo(75 + 2 * d, 75);
+        ctx.lineTo(105 + 2 * d, 45);
+        ctx.lineTo(105 + 2 * d, 105);
+        ctx.lineTo(75 + 2 * d, 75);
+        ctx.stroke();
+
+        // 绘制圆形
+        ctx.beginPath();
+        ctx.arc(75 + 3 * d, 75, 75, 0, Math.PI / 2, true); // true:逆时针绘制
+        ctx.stroke();
+
+        // 绘制笑脸
+        ctx.beginPath();
+        ctx.arc(75 + 4 * d, 75, 60, 0, Math.PI * 2, true);
+        ctx.moveTo(105 + 4 * d, 75);
+        ctx.arc(75 + 4 * d, 75, 30, 0, Math.PI, false);
+        ctx.moveTo(50 + 4 * d, 45 + 10);
+        ctx.arc(45 + 4 * d, 45 + 10, 5, 0, Math.PI * 2, false);
+        ctx.moveTo(110 + 4 * d, 45 + 10);
+        ctx.arc(105 + 4 * d, 45 + 10, 5, 0, Math.PI * 2, false);
+        ctx.stroke();
+    }
+    </script>
+</body>
+
+</html>
