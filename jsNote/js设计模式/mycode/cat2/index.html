@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="box-wrap">
+        <div id="nav" class="box-wrap-list">
+            <!-- <a class="box-wrap-list-btn btn">cat</a> -->
+        </div>
+        <div id="box" class="box">
+            <h2 id="box-title" class="box-title"></h2>
+            <img id="box-img" class="box-img" src="" alt="">
+            <p id="box-count" class="box-count"></p>
+        </div>
+        <button id="box-adminBtn" class="admin-btn">Admin</button>
+        <form id="box-form" class="box-form" action="">
+            <div class="box-form-line">
+                <label for="title">图片名</label>
+                <input type="text" name="title">
+            </div>
+            <div class="box-form-line">
+                <label for="imgUrl">图片地址</label>
+                <input type="text" name="imgUrl">
+            </div>
+            <div class="box-form-line">
+                <label for="count">点击次数</label>
+                <input type="text" name="count">
+            </div>
+            <div class="box-form-line">
+                <input type="submit" value="save" name="save">
+                <input type="submit" value="cancel" name="cancel">
+            </div>
+        </form>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
