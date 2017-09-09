@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zn-CH">
 
 <head>
     <meta charset="UTF-8">
@@ -15,17 +15,37 @@
         <li>promise对象</li>
     </ol>
     <h2>回调函数</h2>
-    <script>
-    var f1 = function(callback) {
-        setTimeout(function() {
+    <pre>
+    var f1 = function (callback) {
+        setTimeout(function () {
+            // f1任务代码
             callback();
         }, 1000);
     }
-    var f2 = function(){
-    	alert("f2");
+    var f2 = function () {
+        alert("f2");
     }
 
     f1(f2);
+    </pre>
+    <p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+    <script>
+        var f1 = function (callback) {
+            setTimeout(function () {
+                // f1任务代码
+                callback();
+            }, 1000);
+        }
+        var f2 = function () {
+            alert("f2");
+        }
+
+        f1(f2);
+    </script>
+    <h2>事件监听</h2>
+    <pre></pre>
+    <script>
+
     </script>
 </body>
 
