@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+
+<body>
+    <script>
+        // 模拟ajax请求
+        var ajax = {
+            flag: undefined,
+            data:null,
+            run: function (data) {
+                var t = 1000;
+                var r = Math.random();
+                console.log("ajax runing..");
+                setTimeout(function () {
+                    console.log("ajax end");
+                    this.flag = r > 0.3 ? true : false;
+                    if(this.flag) this.data = [1,5,12,33];
+                }.bind(this), (1 + r) * t);
+            }
+        };
+
+        // 创建Promise
+        var p = new Promise(function (resove, reject) {
+            // 运行异步任务
+            ajax.run();
+            // 运行结果
+            setTimeout(function () {
+                if (ajax.flag) {
+                    resove(ajax.data);
+                } else {
+                    reject();
+                }
+            }, 2000);
+        });
+        p.then(function(data){
+            console.log("seuccess");
+            console.log(data);
+        }).catch(function(){
+            console.log("fail");
+        });
+    </script>
+</body>
+
+</html>

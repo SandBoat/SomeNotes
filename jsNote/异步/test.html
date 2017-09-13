@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // goods => user => goodList
+        // 模拟ajax请求
+        var ajax = {
+            flag: undefined,
+            data: null,
+            change: function () { },
+            dataUpdate: function (data) {
+                if (data) {
+                    this.flag = true;
+                    this.data = data;
+                } else {
+                    this.flag = false;
+                }
+                this.change();
+            },
+            run: function (data) {
+                var t = 1000;
+                var r = Math.random() > 0.5 ? true : false;
+                console.log("ajax runing..");
+                setTimeout(function () {
+                    console.log("ajax end");
+                    console.log(r);
+                    if (r) {
+                        this.dataUpdate(data);
+                    } else {
+                        this.dataUpdate();
+                    }
+                }.bind(this), (1 + r) * t);
+            }
+        };
+
+        // 创建Promise
+        var p = new Promise(function (resove, reject) {
+            ajax.change = function(){
+                if(ajax.flag){
+                    console.log();
+                    resove(ajax.data);
+                }else{
+                    reject();
+                }
+            }
+            // 运行异步任务
+            ajax.run([1,2,3,4]);
+        });
+        p.then(function(data){
+            console.log("resove");
+            console.log(data);
+        },function(){
+            console.log("reject");
+        })
+    </script>
+</body>
+
+</html>

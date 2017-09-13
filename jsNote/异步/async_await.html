@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async/awiait</title>
+</head>
+
+<body>
+    <script>
+        var p = new Promise(function (resove, reject) {
+            var r = Math.random() > 0.5 ? true : false;
+            setTimeout(function () {
+                if (r) {
+                    resove("success");
+                } else {
+                    reject("fail");
+                }
+            }, 1000);
+        });
+
+        var t = async function () {
+            try {
+                var res = await p;
+                // console.log(res);
+                return res;
+            } catch (err) {
+                // console.log(err);
+                return err;
+            }
+        }
+        console.log(t());
+    </script>
+</body>
+
+</html>
