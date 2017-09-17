@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a id="test">down</a>
+    <script src=""></script>
+    <script>
+        function downloadFile(eleId, fileName, content) {
+            var aLink = document.getElementById(eleId);
+            var blob = new Blob([content], {
+                type: 'application/json'
+            });
+            aLink.download = fileName;
+            aLink.href = URL.createObjectURL(blob);
+        }
+
+        var debug = {
+            hello: "world"
+        };
+        var blob = new Blob([JSON.stringify(debug, null, 2)], {
+            type: 'application/json'
+        });
+        var resStr;
+        var reader = new FileReader();
+        reader.addEventListener("loadend", function () {
+            resStr = reader.result;
+        });
+        reader.readAsText(blob);
+
+        downloadFile("test", "tt.js", "var r = " + JSON.stringify(debug, null, 2));
+    </script>
+</body>
+
+</html>
