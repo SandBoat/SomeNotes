@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var text = "mom and dad and baby";
+    var pattern = /mom( and dad( and baby)?)?/gi;
+    var pattern2 = /mom( and dad( and baby)?)?/;
+
+    var matchs = pattern.exec(text);
+    //在全局检索模式下，match() 即不提供与子表达式匹配的文本的信息，也不声明每个匹配子串的位置。
+    var matchs2 = text.match(pattern);
+
+    if(pattern.test(text)){
+        // var matchs3 = RegExp;
+    }
+    </script>
+</body>
+
+</html>

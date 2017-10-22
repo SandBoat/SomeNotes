@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ajaxp</title>
+</head>
+
+<body>
+    <table id="data">
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+    <script type="text/javascript">
+    "use strict"
+
+    // var getJson = function(url, callback) {
+    //     var xml = new XMLHttpRequest();
+    //     // xml.responseType = "json";
+    //     xml.onreadystatechange = function() {
+    //         if (xml.readyState == 4 && xml.status == 200) {
+    //             callback(xml.response);
+    //         }
+    //     }
+    //     xml.open("GET", url);
+    //     xml.send();
+    // }
+
+    // var dataELe = document.getElementById("data");
+    // getJson("https://api.github.com/", function(data) {
+    //     // var data = JSON.parse(data);
+    //     // var dataStr = "";
+    //     // for (var item in data) {
+    //     //     dataStr += `
+    //     //         <tr>
+    //     //             <td>${item}</label>
+    //     //             <td>${data[item]}</label>
+    //     //         </tr>
+    //     //     `;
+    //     // }
+    //     // dataELe.innerHTML = dataStr;
+    //     console.log(typeof data);
+    //     console.log(data);
+    // });
+
+    let callbackname = `callback_${(new Date()).getTime().toString()}_${Math.random().toString().slice(2)}`;
+    window[callbackname] = function(data) {
+        console.log(data);
+    }
+
+    let sc = document.createElement("script");
+    sc.src = `http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=${callbackname}`
+    // sc.innerHTML = 'bb("data")'
+
+    document.head.appendChild(sc).parentNode.removeChild(sc);
+
+    
+    </script>
+</body>
+
+</html>

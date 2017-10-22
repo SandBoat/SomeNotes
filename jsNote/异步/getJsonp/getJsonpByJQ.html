@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>getJSONP</title>
+</head>
+
+<body>
+    <ul id="data">
+    </ul>
+    </div>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript">
+    // $.getJSON("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", function(data) {
+    //     var html = "";
+    //     $.each(data, (key, value) => {
+    //         html += `<li>${value}</li>`
+    //     });
+    //     $("#data").html(html);
+    // })
+
+    $.ajax("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", {
+        type: "get",
+        dataType: "json",
+        success: function(data) {
+            console.log("ok");
+            console.log(this);
+            console.log(data);
+
+            var html = "";
+            $.each(data, (key, value) => {
+                html += `<li>${value}</li>`
+            });
+            $("#data").html(html);
+        },
+        error: function() {
+            console.log("err");
+        }
+    });
+    </script>
+</body>
+
+</html>

@@ -10,11 +10,11 @@
 
 <body>
     <script>
-        var p = new Promise(function (resove, reject) {
+        var p = new Promise(function (resolve, reject) {
             var r = Math.random() > 0.5 ? true : false;
             setTimeout(function () {
                 if (r) {
-                    resove("success");
+                    resolve("success");
                 } else {
                     reject("fail");
                 }

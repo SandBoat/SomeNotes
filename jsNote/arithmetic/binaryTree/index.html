@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    class BiTreeNode {
+        constructor(data = "", lchild = null, rchild = null) {
+            // super(this);
+            this.data = data;
+            this.lchild = lchild;
+            this.rchild = rchild;
+        }
+        get lchild() {
+            return this._lchild;
+        }
+        set lchild(node) {
+            this._lchild = node;
+        }
+        get rchild() {
+            return this._rchild;
+        }
+        set rchild(node) {
+            this._rchild = node;
+        }
+
+        static get version() {
+            return "0.0.1";
+        }
+    }
+
+    // DLR
+    function preRootTraverse(biTreeNode) {
+        var res = "";
+        if (biTreeNode) {
+            res += biTreeNode.data;
+            res += arguments.callee(biTreeNode.lchild);
+            res += arguments.callee(biTreeNode.rchild);
+        }
+        return res;
+    }
+    // LDR
+    function inRootTraverse(biTreeNode) {
+        var res = "";
+        if (biTreeNode) {
+            res += arguments.callee(biTreeNode.lchild);
+            res += biTreeNode.data;
+            res += arguments.callee(biTreeNode.rchild);
+        }
+        return res;
+    }
+    // DRL
+    function lastRootTraverse(biTreeNode) {
+        var res = "";
+        if (biTreeNode) {
+            res += arguments.callee(biTreeNode.lchild);
+            res += arguments.callee(biTreeNode.rchild);
+            res += biTreeNode.data;
+        }
+        return res;
+    }
+
+    // 查找算法
+    function searchNode(biTreeNode, data) {
+        if (biTreeNode) {
+            if (biTreeNode.data === data) {
+                return data;
+            } else {
+                if (arguments.callee(biTreeNode.lchild, data)) return data;
+                if (arguments.callee(biTreeNode.rchild, data)) return data;
+            }
+        }
+        return null;
+    }
+
+    // 计算节点个数
+    function countNode(biTreeNode) {
+        var res = 0;
+        if (biTreeNode) {
+            res++;
+            res += arguments.callee(biTreeNode.lchild);
+            res += arguments.callee(biTreeNode.rchild);
+        }
+        return res;
+    }
+
+    // 计算叶节点个数
+    function countLasNode(biTreeNode) {
+        var res = 0;
+        if (biTreeNode) {
+            if (biTreeNode.lchild === null && biTreeNode.rchild === null) {
+                res++;
+            }
+            res += arguments.callee(biTreeNode.lchild);
+            res += arguments.callee(biTreeNode.rchild);
+        }
+        return res;
+    }
+
+    // 计算二叉树深度
+    function getDepth(biTreeNode) {
+        var depth = 0;
+        if (biTreeNode) {
+            depth += Math.max(arguments.callee(biTreeNode.lchild), arguments.callee(biTreeNode.rchild)) + 1;
+        }
+        return depth;
+    }
+
+
+    // 比较两科树是否相同
+    function isEqualTree(biTreeNode1, biTreeNode2) {
+        if (biTreeNode1 && biTreeNode2) {
+            if (biTreeNode1.data !== biTreeNode2.data) return false;
+            if (!arguments.callee(biTreeNode1.lchild, biTreeNode2.lchild)) return false;
+            if (!arguments.callee(biTreeNode1.rchild, biTreeNode2.rchild)) return false;
+        } else if (biTreeNode1 || biTreeNode2) return false;
+        return true;
+    }
+
+    /**
+     * 根据DLR和LDR建立二叉树
+     * @param  {[string]} DLR
+     * @param  {[string]} LDR
+     * @param  {[int]} preIndex  先根序列在DLR中的开始位置
+     * @param  {[int]} inIndex   中根序列在LDR中的开始位置
+     * @param  {[int]} count     树中节点个数
+     * @return {[BiTreeNode]}  
+     */
+    // function createBiTreeNodeByDLRAndLDR(DLR, LDR, preIndex = 0, inIndex = 0, count = DLR.length) {
+    //     var node = null;
+    //     if (count > 0) {
+    //         node = new BiTreeNode(DLR[0]);
+    //         node.lchild = arguments.callee()
+    //     }
+    //     return node;
+    // }
+
+    /**
+     * 根据DLR和LDR建立二叉树
+     * @param  {[string]} DLR 先根序列
+     * @param  {[string]} LDR 中根序列
+     */
+    function createBiTreeNodeByDLRAndLDR(DLR, LDR) {
+        var node = null,
+            rootIndex = 0;
+        if (DLR.length > 0) {
+            node = new BiTreeNode(DLR[0]);
+            rootIndex = LDR.indexOf(DLR[0]);
+            node.lchild = createBiTreeNodeByDLRAndLDR(DLR.slice(1, rootIndex + 1), LDR.slice(0, rootIndex));
+            node.rchild = createBiTreeNodeByDLRAndLDR(DLR.slice(rootIndex + 1, DLR.length), LDR.slice(rootIndex + 1, LDR.length));
+        }
+        return node;
+    }
+
+
+
+    var b = new BiTreeNode('A');
+    b.lchild = new BiTreeNode('B', new BiTreeNode('D'), new BiTreeNode('E', new BiTreeNode('G')));
+    b.rchild = new BiTreeNode('C', new BiTreeNode('F', null, new BiTreeNode('H')));
+
+    // console.log(preRootTraverse(b));
+    // console.log(inRootTraverse(b));
+    // console.log(lastRootTraverse(b));
+
+    // console.log(searchNode(b, 'E'));
+    // console.log(searchNode(b, 'Z'));
+
+    // console.log(countNode(b));
+    // console.log(countLasNode(b));
+
+    // console.log(getDepth(b));
+
+    // var c = new BiTreeNode('A', new BiTreeNode('B', new BiTreeNode('D'), new BiTreeNode('E', new BiTreeNode('G'))), new BiTreeNode('C', new BiTreeNode('F', null, new BiTreeNode('H'))));
+    // var d = new BiTreeNode('A', new BiTreeNode('B', new BiTreeNode('D'), new BiTreeNode('E', new BiTreeNode('G'))), new BiTreeNode('C', new BiTreeNode('F', null, new BiTreeNode('K'))));
+    // var e = new BiTreeNode('A', new BiTreeNode('B', new BiTreeNode('D'), new BiTreeNode('E', new BiTreeNode('G'))), new BiTreeNode('C', new BiTreeNode('F')));
+    // console.log(isEqualTree(b, c));
+    // console.log(isEqualTree(b, d));
+    // console.log(isEqualTree(b, e));
+
+    var b2 = createBiTreeNodeByDLRAndLDR(preRootTraverse(b), inRootTraverse(b))
+    console.log(b2);
+    console.log(isEqualTree(b, b2));
+
+    function TreeNode(x) {
+        this.val = x;
+        this.left = null;
+        this.right = null;
+    }
+
+    function reConstructBinaryTree(pre, vin) {
+        var node = null,
+            rootIndex = 0;
+        if (pre.length > 0) {
+            node = new TreeNode(pre[0]);
+            rootIndex = pre.indexOf(pre[0]);
+            node.left = arguments.callee(pre.slice(1, rootIndex + 1), vin.slice(0, rootIndex));
+            node.right = arguments.callee(pre.slice(rootIndex + 1, pre.length), vin.slice(rootIndex + 1, vin.length));
+        }
+        return node;
+    }
+    // console.log(reConstructBinaryTree([1, 2, 3, 4, 5, 6, 7], [3, 2, 4, 1, 6, 5, 7]))
+    </script>
+</body>
+
+</html>
