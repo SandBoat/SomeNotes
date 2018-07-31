@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise 和 async/await</title>
+</head>
+
+<body>
+    <button onclick="bbPromise()">Promise</button>
+    <button onclick="bbAA()">async/await</button>
+    <script>
+    // 模拟ajax请求
+    let ajax = () => {
+        return new Promise((resove, reject) => {
+            let t = 1000;
+            let r = Math.random();
+            console.log('ajax runing...');
+            setTimeout(() => {
+                console.log('ajax end');
+                let flag = r > 0.3 ? true : false;
+
+                if (flag) {
+                    // 请求成功
+                    console.log('ajax success');
+                    resove({
+                        success: true,
+                        data: [~~(Math.random() * 10), ~~(Math.random() * 20), ~~(Math.random() * 30), ~~(Math.random() * 40)]
+                    });
+                } else {
+                    // 请求失败
+                    console.log('ajax failed');
+                    reject({
+                        success: false,
+                        msg: 'ajax failed'
+                    });
+                }
+            }, (1 + r) * t);
+        });
+    };
+
+
+    // Promise
+    let bbPromise = () => {
+        let bb = ajax();
+
+        bb.then(function(res) {
+            console.log(res.data);
+        }).catch(function(res) {
+            // console.log(res.msg);
+        });
+    }
+
+    // async/await
+    let bbAA = async() => {
+        try {
+            let bb = await ajax();
+            console.log(bb.success);
+            console.log(bb.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    </script>
+</body>
+
+</html>
